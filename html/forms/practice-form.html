@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bucket List</title>
+</head>
+<body>
+<form action="success.html">
+	<fieldset>
+		<div>
+			<label>Name:</label>
+			<input type ="text" name="firstname" placeholder="Name">
+		</div>
+		<div>
+			<label>Places to Travel</label>
+			<select name="location">
+				<option value="venezuela">Venezuela</option>
+				<option value="thailand">Thailand</option>
+				<option value="canada">Canada</option>
+			</select>
+		</div>
+		<div>
+			<label>Choose a date:</label>
+			<input type="date" name ="date">
+		</div>
+		<div>
+			<label> Pick your level of comfort </label>
+			<br>
+			<input type="radio" name="comfort" value ="backpacking" checked> Backpacking <br>
+			<input type="radio" name="comfort" value ="holiday inn" > Holiday Inn <br>
+			<input type="radio" name="comfort" value ="5star"> 5 Star <br>
+		</div>
+		<div>
+			<label>What are you looking for in a vacation?</label>
+			<textarea name = "Comments">Write Something Here 				
+			</textarea>
+		</div>
+	</fieldset>
+	<button type ="submit">Plan your trip!</button>
+</form>
+</body>
+</html>
