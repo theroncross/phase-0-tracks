@@ -12,3 +12,11 @@
 .list-style {
 	font-size: .8em;
 }
+
+h3:first-child {
+	color: blue;
+}
+
+ul li {
+	color: red;
+}
