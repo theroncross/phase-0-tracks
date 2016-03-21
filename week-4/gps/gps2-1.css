@@ -1,0 +1,26 @@
+header, section, footer {
+  padding: 1.5em;
+  margin; 0;
+}
+
+header {
+  background: #3276bb;
+  color: white;
+  overflow: hidden;
+}
+
+.column-1 {
+  max-width: 50%;
+  float: left;
+}
+
+.column-2 {
+  max-width: 50%;
+  float: right;
+}
+
+footer {
+  clear: both;
+  background: #ccc;
+}
+
