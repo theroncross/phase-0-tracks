@@ -1,3 +1,23 @@
+body {
+  max-width: 960px;
+}
+#allthethings {
+  max-width: 600px;
+  margin: auto;
+}
+
+#external-links {
+  width:20%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+main {
+  width: 75%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 blockquote {
   border-left: 5px solid blue;
   padding: 15px;
@@ -29,4 +49,19 @@ figure {
 figcaption {
   font-style: italic;
   text-align: right;
+}
+
+@media screen and (max-width: 500px) {
+body {
+  font-size: x-small;
+}
+
+#external-links {
+  width: 100%
+}
+
+main {
+  padding-left: 40px;
+}
+
 }
