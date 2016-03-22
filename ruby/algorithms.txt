@@ -1,0 +1,46 @@
+Elevator algorithm
+if the desired floor is above your current floor push the up button
+otherwise push the down button
+
+until the doors open stand patiently and whistle a happy song
+
+when the doors open
+	if there is no room for you
+		wait for the doors to close and start again at the beginning
+	otherwise
+		move forward until you are clear of the doors
+		turn around to face the doors
+		push the button nearest the number of your desired floor or ask the person who insists on standing in front of the buttons to do so
+		don't make eye contact or otherwise acknowledge the existence of anyone else in the elevator
+		continue whistling your happy song and staring at the floor readout until you reach your floor
+		exit the elevator
+
+Vacuum the rug algorithm
+Open the hall closet door by turning the know 1/4 turn and pulling
+Grasp vacuum cleaner by handle and pull until out of closet.
+Close closet door by gentling pushing until you hear a click
+Push vacuum to nearest edge of rug
+Twist cord holder 180 degrees
+Untangle cord until untangled or until 3 minutes has gone by
+Plug cord into nearest wall outlet by trying to insert the wide prong into the narrow slot, then rotating 180 degress
+Move back to vacuum cleaner, grasp by handle, step on angle release and lean vacuum back 45 degrees
+Turn vacuum on by locating power button and pressing it until it clicks
+Turn left until parallel with edge of rug
+Until the rug has been vacuumed entirely
+	While there is something that isn't being sucked up by the vacuum or 4 times total
+		repeatedly push the vacuum back and forth over it 5 times
+		pick it up, look at it, and throw it back down
+	Until you reach the opposite edge
+		Push the vacuum cleaner 3 feet
+		Rotate the vacuum cleaner by 15 degrees toward the opposite edge
+		Pull the vacuum toward you 3 feet
+		Rotate the vacuum by 15 degrees toward the opposite
+		Move yourself 1 foot toward the opposite edge
+	Move forward 3 feet
+Unplug the cord
+Coil it up
+Hange it in a messy heap over the handle
+Put the vacuum back in the closet
+Have a beer to celebrate your victory
+
+
