@@ -1,4 +1,4 @@
-def detect_vampire()
+def detect_vampire
 	p "What is your name?"
 	name = gets.chomp
 
@@ -20,17 +20,16 @@ def detect_vampire()
 		allergies = gets.chomp.downcase
 	end
 
-	result = ""
 	if name == "Drake Cula" || name == "Tu Fang"
-		result = "Definitely a vampire"
+		return "Definitely a vampire"
 	elsif (2016 - birth_year != age) && (likes_garlic == "no") && (wants_insurance == "no")
-		result = "Almost certainly a vampire"
+		return "Almost certainly a vampire"
 	elsif allergies == "sunshine" || (2016 - birth_year != age) && (likes_garlic == "no") || (wants_insurance == "no")
-		result = "Probably a vampire"
+		return "Probably a vampire"
 	elsif (2016 - birth_year == age) && (likes_garlic == "yes") || (wants_insurance == "yes")
-		result = "Probably not a vampire"
+		return "Probably not a vampire"
 	else
-		result = "Results inconclusive"
+		return "Results inconclusive"
 	end
 end
 
