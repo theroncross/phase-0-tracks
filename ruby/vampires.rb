@@ -28,4 +28,10 @@ def detect_vampire()
 	end
 end
 
-p detect_vampire
+p "How many employees will you be processing?"
+how_many_employees = gets.chomp.to_i
+
+while how_many_employees > 0 do
+	p detect_vampire
+	how_many_employees -= 1	
+end
