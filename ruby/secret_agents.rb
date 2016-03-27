@@ -27,8 +27,8 @@ def encrypt(str)
   encrypted_str
 end
 
-puts encrypt 'abc'
-puts encrypt 'zed'
+# puts encrypt 'abc'
+# puts encrypt 'zed'
 
 
 def decrypt(str)
@@ -45,10 +45,34 @@ def decrypt(str)
   decrypted_str
 end
 
-puts decrypt 'bcd'
-puts decrypt 'afe'
+# puts decrypt 'bcd'
+# puts decrypt 'afe'
 
-puts decrypt(encrypt("The duck flies at midnight"))
+#Release 4
+# puts decrypt(encrypt("The duck flies at midnight"))
 #The return from the encrypt method is a string, that immediately gets passed
 #to the decrypt method as an arugment. The return value from the decrypt method
 #is then passed to puts.
+
+# Release 5
+# Ask the user whether they want to encrypt or decrypt
+# Ask them to enter their password
+# Pass their password into the right method based on their choice
+# Print the results to the screen
+
+puts "Would you like to encrypt or decrypt your password?"
+choice = gets.chomp.downcase
+
+puts "Please enter your password"
+password = gets.chomp.downcase
+
+message =
+  if choice == 'encrypt'
+    encrypt password
+  elsif choice == 'decrypt'
+    decrypt password
+  else
+    puts "Please enter either 'encrypt' or 'decrypt' to process your password"
+  end
+
+puts message
