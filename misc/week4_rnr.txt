@@ -1,0 +1,89 @@
+Variables
+1. What is a variable? Why might a programmer use a variable?
+
+A variable is a name that can have a value assigned to it. These are useful so that you can access objects by name instead of having to know their object ids.
+
+
+2. If the value of first_name is "Abraham" and last_name is "Lincoln", explain the order in which Ruby will run the line full_name = first_name + last_name, and what the final result will be.
+
+Ruby will first send the '+' operator message to "Abraham" with "Lincoln" as an argument
+The return of the method call is a new string "AbrahamLincoln", which then gets assigned to the variable full_name.
+
+Data Types
+3. For each of the following data types, write a short definition and give at least one example of when you might use the data type in a program. (Don't use an example we've already provided.)
+
+string
+A string of characters belonging to the String class
+ex - storing user input from the gets method
+
+integer
+A counting number (whole number)
+ex - the number of times to iterate through a loop
+
+float
+A decimal number
+ex - calculating the circumference of a circle from its diameter using a float value of pi
+
+nil
+A placeholder for an intentional blank value
+ex - after a variable is declared, but before it's given a value (building a string through concatenation in a loop)
+
+boolean
+A value of true or false
+ex - conditions are evaluated as booleans before an if/else block is run
+
+Algorithms
+4. What is an algorithm?
+An algorithm is a set of instructions that can be used repeatedly
+
+5. What are two common categories of algorithm in computer science?
+Search
+Sort
+
+Methods
+6. What is a method? Why might a programmer choose to use a method?
+A method is a set of instructions, usually attached to an object and called by name
+
+7. Define the following terms as they relate to a method.
+
+return value
+The value that is output when a method is finished and passed back to the part of the code where the method was called
+
+side effect
+Any lasting change in the state of a computer that happens as a method is running
+
+parameter
+A piece of data required by a method in order to complete its instructions
+
+argument
+The data that is passed in and assigned to a parameter when a method is called
+
+implicit return
+The last instruction evaluated in a method has its value returned, even without the return keyword
+
+8. What are global scope and method scope? How do those scopes impact the availability of data at different points in a program?
+Data in the global scope is available anywhere in the program, including inside of methods. Local (or method) scope, is data that can only be accessed during the execution of a method. In other words, by other method calls also in that scope.
+
+Control Flow
+9. What is control flow? Why might a programmer choose to use flow control?
+Control flow is the procedural path taken as the program executes. One thing happens at a time. Control can be passed to a method call or conditional in order to make the program responsive and not always do exactly the same thing.
+
+10. Define the following terms as they relate to flow control.
+
+loop
+Repeats a set of instructions as long as or until some condition is true
+
+if
+Evaluates a statement as true of false. Runs the block of instructions if the statement evaluates to true.
+
+else
+Runs the block of instructions if all of the 'ifs' above it evaluate to false
+
+elsif
+Like an if, but would come after the first if had evaluated to false. Used when a condition is more than binary.
+
+while
+A loop that will repeat as long as the condition evaluates to true
+
+until
+A loop that will repeat as long as the condition evaluates to false
