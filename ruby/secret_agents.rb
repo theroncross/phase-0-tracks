@@ -13,8 +13,15 @@
 
 def encrypt(str)
   encrypted_str = ""
-  str.each_char do |c|
-    next_char = c == 'z' ? 'a' : c.next
+  str.downcase.each_char do |c|
+    next_char =
+      if c == 'z'
+        'a'
+      elsif c == ' '
+        ' '
+      else
+        c.next
+      end
     encrypted_str += next_char
   end
   encrypted_str
@@ -27,12 +34,21 @@ puts encrypt 'zed'
 def decrypt(str)
   alphabet = "abcdefghijklmnopqrstuvwxyz"
   decrypted_str = ""
-  str.each_char do |c|
-    index_in_alphabet = alphabet.index(c)
-    decrypted_str += alphabet[index_in_alphabet - 1]
+  str.downcase.each_char do |c|
+    if c == ' '
+      decrypted_str += ' '
+    else
+      index_in_alphabet = alphabet.index(c)
+      decrypted_str += alphabet[index_in_alphabet - 1]
+    end
   end
   decrypted_str
 end
 
 puts decrypt 'bcd'
 puts decrypt 'afe'
+
+puts decrypt(encrypt("The duck flies at midnight"))
+#The return from the encrypt method is a string, that immediately gets passed
+#to the decrypt method as an arugment. The return value from the decrypt method
+#is then passed to puts.
