@@ -48,3 +48,5 @@ menu = {
 }
 
 p menu[:appetizers][:nachos][:ingredients][1]
+p menu[:desserts][:fancy_name]
+p menu[:entrees][:fish]
