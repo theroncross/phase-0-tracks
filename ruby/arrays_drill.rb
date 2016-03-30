@@ -1,3 +1,17 @@
+# Release 2
+def build_array1 (first, second, third)
+  [first, second, third]
+end
+p build_array1(3,"text",1)
+
+def add_to_array(var1, var2)
+  var1 << var2
+end
+p add_to_array([1,2,3], 4)
+p add_to_array(["blue", "red",5], 8)
+p add_to_array(build_array1("1st", "3rd", "2nd"), "4th")
+
+# Release 1
 teas = []
 p teas
 
