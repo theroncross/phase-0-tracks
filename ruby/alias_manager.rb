@@ -1,3 +1,19 @@
+# Prompt for names until 'quit', then print names and aliases
+def prompt_for_alias
+  real_name = ""
+  aliases = {}
+  until real_name == "quit"
+    p "To get a new alias, enter your real name, or type 'quit'."
+    real_name = gets.chomp
+    if real_name == "quit"
+      break
+    else
+      aliases[real_name] = create_alias(real_name)
+    end
+  end
+  aliases.each { |name, new_alias| p "#{name}, a.k.a. #{new_alias}" }
+end
+
 # Swap the names, increment the letters, and return capitalized result
 def create_alias(name)
   reversed_name = reverse_names(name)
@@ -30,6 +46,4 @@ def capitalize_all(str)
   cap_arr.join(' ')
 end
 
-p "What's your name?"
-name = gets.chomp.downcase
-p create_alias(name)
+prompt_for_alias
