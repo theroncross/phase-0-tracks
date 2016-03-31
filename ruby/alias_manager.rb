@@ -1,10 +1,16 @@
-# Takes a name, increments the letters, and returns the result with capitalization
+# Swap the names, increment the letters, and return capitalized result
 def create_alias(name)
-  my_alias_array = name.chars.map { |letter| increment_letter(letter) }
-  capitalize_all(my_alias_array.join)
+  reversed_name = reverse_names(name)
+  aliased_array = reversed_name.chars.map { |letter| increment_letter(letter) }
+  capitalize_all(aliased_array.join)
 end
 
-# Increments letters, vowels to next vowel, consonants to next consonant
+# Reverse the order of names
+def reverse_names(str)
+  str.split(' ').reverse.join(' ')
+end
+
+# Increment letters, vowels to next vowel, consonants to next consonant
 def increment_letter(letter)
   vowels = ["a", "e", "i", "o", "u"]
   if vowels.include?(letter)
@@ -18,7 +24,7 @@ def increment_letter(letter)
   end
 end
 
-# Capitalizes each name
+# Capitalize each name
 def capitalize_all(str)
   cap_arr = str.split(' ').each { |word| word.capitalize! }
   cap_arr.join(' ')
