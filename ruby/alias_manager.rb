@@ -1,9 +1,9 @@
-# Prompt for names until 'quit', then print names and aliases
+# Prompt for names until 'quit', add name/alias pairs to a hash, then print names and aliases
 def prompt_for_alias
   real_name = ""
   aliases = {}
+  p "To add an alias enter your real name. Type 'quit' when done."
   until real_name == "quit"
-    p "To get a new alias, enter your real name, or type 'quit'."
     real_name = gets.chomp
     if real_name == "quit"
       break
@@ -16,7 +16,7 @@ end
 
 # Swap the names, increment the letters, and return capitalized result
 def create_alias(name)
-  reversed_name = reverse_names(name)
+  reversed_name =   str.split(' ').reverse.join(' ')
   aliased_array = reversed_name.chars.map { |letter| increment_letter(letter) }
   capitalize_all(aliased_array.join)
 end
