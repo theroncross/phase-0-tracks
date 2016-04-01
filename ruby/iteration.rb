@@ -22,3 +22,24 @@ p car_companies
 car_companies.map! { |company| company.upcase }
 p car_companies
 
+# Release 3
+vowels = ["a", "e", "i", "o", "u"]
+numbers = {1 => "one", 2 => "two", 3 => "three", 4 => "four", 5 => "five"}
+# returns a structure without anything that evaluates to true
+p vowels.reject { |vowel| vowel.next == "f" }
+p numbers.reject { |digit, word| digit == word.length }
+# returns a structure with only those elements that evaluate to true
+p vowels.select { |vowel| "Chicago".include?(vowel) }
+p numbers.select { |digit, word| digit >= word.length }
+p vowels
+# changes the structure to contain only those elements that evaluate true
+p vowels.keep_if { |vowel| "Chicago".include?(vowel) }
+p numbers.keep_if { |digit, word| digit >= word.length }
+p vowels
+
+# reset after dangerouse 'keep if' above
+vowels = ["a", "e", "i", "o", "u"]
+numbers = {1 => "one", 2 => "two", 3 => "three", 4 => "four", 5 => "five"}
+# drops elements until the block evaluates to false
+p vowels.drop_while { |vowel| "a being".include?(vowel) }
+p numbers.drop_while { |digit, word| digit < word.length }
