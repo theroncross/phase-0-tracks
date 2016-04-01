@@ -1,0 +1,29 @@
+Name at least three categories of CSS adjustments (example: colors)?
+border, margin, font-family
+
+What are the three ways to link a CSS rule to an HTML document? Which one is the best and why?
+With style attribute, with a style tag, or with a CSS stylesheet
+The stylesheet is the best option because it effectively separates the concerns of adding and presenting content
+
+What is a selector? Give examples of at least three types of selectors.
+A selector selects html elements to style
+Types of selectors include element type, class, and id
+
+What is the box model?
+The box model shows the margin, border, and padding around an element.
+
+Explain and give an example of the cascading effect of CSS.
+Cascading style allow for later or more specific style declarations to overwrite earlier, less-specific stylings.
+body {
+	color: red;
+}
+
+.blue-heading {
+	color: blue;
+}
+uses a class to overwrite the red text color declared in the body selector with blue text.
+
+Name two CSS techniques that assist in responsive design.
+Declaring auto margins and widths in percentages
+Media queries
+
