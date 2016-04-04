@@ -17,11 +17,11 @@ class Puppy
   end
 
   def dog_years(human_years)
-    puts human_years * 7
+    human_years * 7
   end
 
   def chase_tail(num)
-    puts "*completes #{num} circles and falls down*"
+    puts "*completes #{num} circles before falling down*"
   end
 end
 
