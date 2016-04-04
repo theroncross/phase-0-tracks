@@ -32,7 +32,7 @@ buddy.rollover
 buddy.dog_years 5
 buddy.chase_tail 6
 
-class CD_Player
+class CdPlayer
   def initialize
     puts "No music is playing"
   end
@@ -50,4 +50,12 @@ class CD_Player
   def stop
     puts "Oh thank god. My motors were getting tired."
   end
+end
+
+annoying_cd_players = []
+50.times { annoying_cd_players << CdPlayer.new }
+annoying_cd_players.each do |player|
+  player.insert "ABBA Waterloo"
+  player.play 1
+  player.stop
 end
