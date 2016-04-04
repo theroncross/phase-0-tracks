@@ -31,3 +31,23 @@ buddy.speak 4
 buddy.rollover
 buddy.dog_years 5
 buddy.chase_tail 6
+
+class CD_Player
+  def initialize
+    puts "No music is playing"
+  end
+
+  def insert(disc)
+    puts "Opening..."
+    puts "Closing..."
+    puts "Ooh, #{disc}, good choice."
+  end
+
+  def play(track)
+    puts "Are you sure? I like #{track + 1} more, but if you insist."
+  end
+
+  def stop
+    puts "Oh thank god. My motors were getting tired."
+  end
+end
