@@ -1,5 +1,7 @@
 # Santa class with speak and eat methods
 class Santa
+  attr_reader :gender, :ethnicity
+
   def initialize(gender, ethnicity)
     @gender = gender
     @ethnicity = ethnicity
@@ -15,14 +17,6 @@ class Santa
       'Blitzen'
     )
     @age = 0
-  end
-
-  def gender
-    @gender
-  end
-
-  def ethnicity
-    @ethnicity
   end
 
   def speak
