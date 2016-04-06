@@ -1,61 +1,65 @@
-# create a hash with keys and nil values
-$client = {
-  name: "",
-  email: "",
-  age: 0,
-  theme: "",
-  vacation: "",
-  children: false,
-  pets: false
-}
-
-# update about each of the keys in the hash
-def new_info
-  $client.each_key { |property| update property }
-  report
-  fix
-end
-
-# Prompt, and set answer as value in hash
-def update(property)
-  print "#{property.to_s.capitalize}: "
-  user_value = gets.chomp
-  stored_value = nil
-  if $client[property].is_a?(TrueClass) || $client[property].is_a?(FalseClass)
-    stored_value = yes?(user_value)
-  elsif $client[property].is_a?(Fixnum)
-    stored_value = user_value.to_i
-  else
-    stored_value = user_value
+# client class
+class Client
+  attr_accessor :properties
+  def initialize
+    @properties = {
+      name: '',
+      email: '',
+      budget: 0,
+      theme: '',
+      children: false,
+      pets: false
+    }
   end
-  $client[property.downcase.to_sym] = stored_value
-end
 
-# print the hash after all the questions are answered
-def report
-  puts "Here's the information I have stored"
- $client.each_pair { |key, value| puts "#{key.capitalize.to_s}:   #{value}" }
-end
+  # public method for adding new client
+  def onboard
+    @properties.each_key { |property| update property }
+    report
+    fix
+  end
 
-# fix information, if needed, based on response
-def fix
-  property = nil
-  until property == "none"
-    puts "To update any information, type it's name. Otherwise, type 'none'."
-    property = gets.chomp
-    if property == "none"
-      break
-    else
-      update property.downcase.to_sym
+  private
+
+  # Prompt, and set answer as value in hash
+  def update(property)
+    old_value = @properties[property]
+    print "#{property}: "
+    user_value = gets.chomp
+    @properties[property] =
+      if boolean? old_value
+        yes?(user_value)
+      elsif old_value.is_a?(Fixnum)
+        user_value.to_i
+      else
+        user_value
+      end
+  end
+
+  # print the hash after all the questions are answered
+  def report
+    puts "Here's the information I have stored"
+    @properties.each_pair { |key, value| puts "#{key.capitalize}: #{value}" }
+  end
+
+  # fix information, if needed, based on response
+  def fix
+    loop do
+      puts "To update any information, type it's name. Otherwise, type 'none'."
+      property = gets.chomp
+      break if property == 'none'
+      update property.to_sym
       report
     end
+    puts "We're all done."
   end
-  puts "We're all done."
-end
 
-# convert yes/no to true/false
-def yes?(answer)
-  answer.downcase[0] == 'y' ? true : false
-end
+  def boolean?(property)
+    property.is_a?(TrueClass) || property.is_a?(FalseClass)
+  end
 
-new_info
+  # convert yes/no to true/false
+  def yes?(answer)
+    answer.downcase[0] == 'y' ? true : false
+  end
+end

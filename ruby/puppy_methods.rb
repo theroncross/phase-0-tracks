@@ -26,20 +26,21 @@ class Puppy
 end
 
 buddy = Puppy.new
-buddy.fetch("tennis ball")
+buddy.fetch('tennis ball')
 buddy.speak 4
 buddy.rollover
 buddy.dog_years 5
 buddy.chase_tail 6
 
+# CdPlayer with insert, play and stop methods
 class CdPlayer
   def initialize
-    puts "No music is playing"
+    puts 'No music is playing'
   end
 
   def insert(disc)
-    puts "Opening..."
-    puts "Closing..."
+    puts 'Opening...'
+    puts 'Closing...'
     puts "Ooh, #{disc}, good choice."
   end
 
@@ -48,14 +49,14 @@ class CdPlayer
   end
 
   def stop
-    puts "Oh thank god. My motors were getting tired."
+    puts 'Oh thank god. My motors were getting tired.'
   end
 end
 
 annoying_cd_players = []
 50.times { annoying_cd_players << CdPlayer.new }
 annoying_cd_players.each do |player|
-  player.insert "ABBA Waterloo"
+  player.insert 'ABBA Waterloo'
   player.play 1
   player.stop
 end

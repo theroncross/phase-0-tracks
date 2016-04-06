@@ -1,11 +1,11 @@
 # Prompt for names until 'quit', then print names and aliases
 def prompt_for_alias
-  real_name = ""
+  real_name = ''
   aliases = {}
   loop do
     p "To get a new alias, enter your real name, or type 'quit'."
     real_name = gets.chomp.downcase
-    break if real_name == "quit"
+    break if real_name == 'quit'
     aliases[real_name] = create_alias(real_name)
   end
   aliases.each { |name, new_alias| p "#{name}, a.k.a. #{new_alias}" }
@@ -20,20 +20,20 @@ end
 
 # Increment letters, vowels to next vowel, consonants to next consonant
 def increment_letter(letter)
-  vowels = ["a", "e", "i", "o", "u", "y"]
+  vowels = %w('a', 'e', 'i', 'o', 'u', 'y')
   if vowels.include?(letter)
     vowels[letter == vowels.last ? 0 : vowels.index(letter) + 1]
-  elsif letter == " "
+  elsif letter == ' '
     letter
   else
-    next_letter = letter == "z" ? "a" : letter.next
+    next_letter = letter == 'z' ? 'a' : letter.next
     vowels.include?(next_letter) ? next_letter.next : next_letter
   end
 end
 
 # Capitalize each name
 def capitalize_all(str)
-  cap_arr = str.split(' ').each { |word| word.capitalize! }
+  cap_arr = str.split(' ').each(&:capitalize!)
   cap_arr.join(' ')
 end
 
