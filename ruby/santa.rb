@@ -17,6 +17,14 @@ class Santa
     @age = 0
   end
 
+  def gender
+    @gender
+  end
+
+  def ethnicity
+    @ethnicity
+  end
+
   def speak
     puts 'Ho, ho, ho! Haaappy holidays!'
   end
@@ -24,26 +32,36 @@ class Santa
   def eat_milk_and_cookies(cookie)
     puts "That was a good #{cookie}!"
   end
+
+  def celebrate_birthday
+    @age += 1
+  end
+
+  def get_mad_at(reindeer)
+    reindeer_ranking.delete reindeer
+    reindeer_ranking.push reindeer
+  end
 end
 
 santas = []
-genders = %w(
-  'agender'
-  'female'
-  'bigender'
-  'male'
-  'female'
-  'gender fluid'
+genders = [
+  'agender',
+  'female',
+  'bigender',
+  'male',
+  'female',
+  'gender fluid',
   'N/A'
-)
-ethnicities = %w(
-  'black'
-  'Latino'
-  'white'
-  'Japanese-African'
-  'prefer not to say'
-  'Mystical Creature (unicorn)'
+]
+ethnicities = [
+  'black',
+  'Latino',
+  'white',
+  'Japanese-African',
+  'prefer not to say',
+  'Mystical Creature (unicorn)',
   'N/A'
-)
+]
 
 20.times { santas << Santa.new(genders.sample, ethnicities.sample) }
+santas.each { |santa| puts "Gender: #{santa.gender}, Ethnicity: #{santa.ethnicity}" }
