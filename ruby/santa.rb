@@ -1,6 +1,7 @@
 # Santa class with speak and eat methods
 class Santa
   attr_reader :gender, :ethnicity
+  attr_accessor :age
 
   def initialize(gender, ethnicity)
     @gender = gender
@@ -37,7 +38,6 @@ class Santa
   end
 end
 
-santas = []
 genders = [
   'agender',
   'female',
@@ -57,5 +57,14 @@ ethnicities = [
   'N/A'
 ]
 
-20.times { santas << Santa.new(genders.sample, ethnicities.sample) }
-santas.each { |santa| puts "Gender: #{santa.gender}, Ethnicity: #{santa.ethnicity}" }
+i = 0
+random_num = Random.new
+until i == 1000
+  santa = Santa.new(genders.sample, ethnicities.sample)
+  santa.age = random_num.rand(140)
+  puts "Santa # #{i}"
+  puts "Gender: #{santa.gender}"
+  puts "Ethnicity: #{santa.ethnicity}"
+  puts "Age: #{santa.age}"
+  i += 1
+end
