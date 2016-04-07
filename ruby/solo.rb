@@ -1,16 +1,16 @@
 # A class for a player in Munchkin the card game
-# Includes items, race, class, level, item level attributes
-# Methods include kicking down a door, fighting, asking for help, and running
+# Includes name, items array, race, class, level, item level attributes
+# Methods for kicking down a door, fighting, asking for help, and running
 class Player
   attr_reader :level, :item_level, :name, :ally
   attr_accessor :race, :class
 
   def initialize(name)
-    @name = name
-    @level = 1
-    @items = [Item.new]
+    @name =       name
+    @level =      1
+    @items =      [Item.new]
     @item_level = update_item_level
-    @race = 'human'
+    @race =       'human'
     @class
     @ally
   end
@@ -34,23 +34,24 @@ class Player
   end
 
   def fight_alone(monster)
-    update_item_level
     if @item_level > monster.level
       puts 'Monster down. Take your treasure!'
       take Item.new
+      @level += 1
     else
       puts 'Better try to get an (ally) and come back, or (run) away.'
     end
   end
 
   def fight_with_ally(monster)
-    @ally.update_item_level
-    team_level = @ally ? @item_level + @ally.item_level : @item_level
-    if team_level > monster.level
+    if @item_level + @ally.item_level > monster.level
       puts "Together you defeat the monster. #{@ally.name} gets treasure!"
       @ally.take Item.new
+      @level += 1
     else
       puts 'The monster is too much. Run away!'
+      run_away
+      @ally.run_away
     end
     @ally = nil
   end
@@ -60,15 +61,24 @@ class Player
     @ally = gets.chomp == 'y' ? ally : nil
   end
 
-  def take(treasure)
-    @items << treasure
-    puts "Alright, I got a level #{treasure.level} #{treasure.name}!"
+  def take(gear)
+    puts "You found a level #{gear.level} #{gear.name}for your #{gear.slot}."
+    current = @items.find { |item| item.slot == gear.slot }
+    if current.nil?
+      @items << gear
+    else
+      puts "Do you want to discard your level #{current.level} #{current.name}?"
+      response = gets.chomp
+      return if response != 'y'
+      @items.delete_if { |item| item.slot == gear.slot }
+      @items << gear
+    end
   end
 
   def run_away
     get_away_if = @class == 'Thief' ? 4 : 5
-    run_score = Random.rand 6
-    puts "You rolled a #{run_score}."
+    run_score = Random.rand(1..6)
+    puts "#{@name} rolled a #{run_score}."
     if run_score >= get_away_if
       puts 'Whew! That was close'
     else
@@ -83,18 +93,19 @@ class Monster
   attr_reader :level, :name
 
   def initialize
-    @level = Random.rand(20)
+    @level = Random.rand(12)
     @name = %w('Medusa' 'Squidzilla' 'Scrooge').sample
   end
 end
 
 # Items have names and levels
 class Item
-  attr_reader :name, :level
+  attr_reader :name, :level, :slot
 
   def initialize
     @name = ['Durendal', 'Eleven Foot Pole', 'Aluminum Foil'].sample
     @level = Random.rand(1..4)
+    @slot = [:feet, :chest, :head, :weapon].sample
   end
 end
 
@@ -111,6 +122,7 @@ players.each(&:status_update)
 
 20.times do
   players.each do |player|
+    player.status_update
     monster = Monster.new
     player.kick_down_door(monster)
     puts 'What do you want to do? You can (fight), (ally), or (run)'
@@ -119,15 +131,13 @@ players.each(&:status_update)
       player.fight_alone(monster)
     elsif fight_choice == 'ally'
       puts 'Who would you like to ask for help?'
-      ally_index = players.index { |ally| ally.name == gets.chomp }
-      player.ask_for_help(players[ally_index])
-      if player.ally
-        player.fight_with_ally(monster)
-      else
-        player.run_away
-      end
+      ally_name = gets.chomp
+      ally = players.find { |buddy| buddy.name == ally_name }
+      player.ask_for_help(ally)
+      player.ally ? player.fight_with_ally(monster) : player.run_away
     else
       player.run_away
     end
+    player.update_item_level
   end
 end
