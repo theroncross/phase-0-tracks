@@ -93,7 +93,7 @@ class Monster
   attr_reader :level, :name
 
   def initialize
-    @level = Random.rand(12)
+    @level = Random.rand(5..15)
     @name = %w('Medusa' 'Squidzilla' 'Scrooge').sample
   end
 end
