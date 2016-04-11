@@ -1,0 +1,31 @@
+1. What are classes? Be sure to define the following terms in your explanation and describe the relationships between them:
+
+class
+state
+behavior
+instance variable
+instance method
+
+Classes are a way of organizing code in a way that models real-world objects. Classes generally both describe what the object is like (it's state), as well as what the object can do (it's behavior). The state, or attributes, of the object are typically stored in instance variables, which are available to all of the instance methods defining the behavior of the object. The 'instance' in these terms describes the fact that these attributes and methods are available within instances, or individual objects, of the class, but not the class object itself.
+
+2. What are attributes?
+
+Attributes are the variables that describe the state of the instance. For example, the color attribute of instances of the Car class could be different colors for each individual car instance, but all would be described by the value associated with the instance variable @color.
+
+3. Give an example of a real world object, and describe how you might assign its attributes if you were to design a class to represent that object.
+
+A drink company might have a Soda class. The attributes of that soda might include an ingredients array, sugar, sodium, and fat attributes that each store an integer for the number of grams of each per ounce, and name and catch-phrase attributes that store strings.
+
+4. What is the purpose of the initialize method? When does it run?
+
+The initialization method is the first thing that runs when the class is instantiated. Each of the instance variables listed in it (usually all of the instance variables in the class) is declared, and can be assigned an initial value.
+
+5. What are modules?
+
+Modules are similar to classes in that they organize methods into a single namespace. The biggest conceptual difference is that modules don't represent objects, but instead are collections based on some common idea, such as math functions. Practically, they are very different because there is no way to create an instance of a module. Instead, modules are included in other classes or methods in order to add functionality without copying and pasting code.
+
+6. What are the different ways you can use a module?
+
+Modules have to be included in order to be accessible in an instance or within a method. Once included, the methods in a module can be called like any other method. The only difference is that the method call needs to start with the module name (e.g. Math.round(3.1415)). When requiring and including a module, you can include the entire module, or just make a single method available.
+
+You're calling a method on the instance. The method returns an array.

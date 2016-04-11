@@ -116,12 +116,17 @@ class Player
     puts "You found a level #{gear.level} #{gear.name} for your #{gear.slot}."
     current = @items.find { |item| item.slot == gear.slot }
     unless current.nil?
-      puts "Discard your level #{current.level} #{current.name}? (y/n)"
-      response = gets.chomp
-      return if response == 'n'
-      @items.delete_if { |item| item.slot == gear.slot }
+      return unless discard?(current)
     end
     @items << gear
+  end
+
+  def discard?(current)
+    puts "Discard your level #{current.level} #{current.name}? (y/n)"
+    response = gets.chomp
+    return fasle if response == 'n'
+    @items.delete_if { |item| item.slot == gear.slot }
+    true
   end
 
   def update_item_level
