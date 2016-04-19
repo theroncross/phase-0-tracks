@@ -1,0 +1,73 @@
+SELECT * FROM repetitions;
+id          distance    target_time  start_time  finish_time  elapsed_time  athlete_id
+----------  ----------  -----------  ----------  -----------  ------------  ----------
+1           100         18.0         1461085649  1461085649   17.56         1
+2           100         18.0         1461085732  1461085732   18.24         1
+3           100         18.0         1461085748  1461085748   19.13         1
+4           100         20.0         1461085771  1461085771   19.13         2
+5           100         20.0         1461085780  1461085780   19.75         2
+6           100         20.0         1461085791  1461085791   20.56         2
+7           100         16.0         1461085818  1461085818   16.53         3
+8           100         16.0         1461085828  1461085828   15.98         3
+9           100         16.0         1461085840  1461085840   16.23         3
+
+UPDATE repetitions SET finish_time = start_time + elapsed_time * 1000 WHERE start_time == finish_time;
+SELECT * FROM repetitions;
+id          distance    target_time  start_time  finish_time  elapsed_time  athlete_id
+----------  ----------  -----------  ----------  -----------  ------------  ----------
+1           100         18.0         1461085649  1461103209   17.56         1
+2           100         18.0         1461085732  1461103972   18.24         1
+3           100         18.0         1461085748  1461104878   19.13         1
+4           100         20.0         1461085771  1461104901   19.13         2
+5           100         20.0         1461085780  1461105530   19.75         2
+6           100         20.0         1461085791  1461106351   20.56         2
+7           100         16.0         1461085818  1461102348   16.53         3
+8           100         16.0         1461085828  1461101808   15.98         3
+9           100         16.0         1461085840  1461102070   16.23         3
+
+SELECT * FROM athletes, repetitions WHERE repetitions.athlete_id = athletes.id;
+id          name        birth_year  id          distance    target_time  start_time  finish_time  elapsed_time  athlete_id
+----------  ----------  ----------  ----------  ----------  -----------  ----------  -----------  ------------  ----------
+1           Theron      1977        1           100         18.0         1461085649  1461103209   17.56         1
+1           Theron      1977        2           100         18.0         1461085732  1461103972   18.24         1
+1           Theron      1977        3           100         18.0         1461085748  1461104878   19.13         1
+2           Jennifer    1971        4           100         20.0         1461085771  1461104901   19.13         2
+2           Jennifer    1971        5           100         20.0         1461085780  1461105530   19.75         2
+2           Jennifer    1971        6           100         20.0         1461085791  1461106351   20.56         2
+3           Ethan       2002        7           100         16.0         1461085818  1461102348   16.53         3
+3           Ethan       2002        8           100         16.0         1461085828  1461101808   15.98         3
+3           Ethan       2002        9           100         16.0         1461085840  1461102070   16.23         3
+
+sqlite> SELECT athletes.name, repetitions.target_time, repetitions.elapsed_time FROM athletes JOIN repetitions ON athletes.id = repetitions.athlete_id;
+name        target_time  elapsed_time
+----------  -----------  ------------
+Theron      18.0         17.56
+Theron      18.0         18.24
+Theron      18.0         19.13
+Jennifer    20.0         19.13
+Jennifer    20.0         19.75
+Jennifer    20.0         20.56
+Ethan       16.0         16.53
+Ethan       16.0         15.98
+Ethan       16.0         16.23
+
+sqlite> DELETE FROM repetitions WHERE elapsed_time > target_time;
+sqlite> SELECT athletes.name, repetitions.target_time, repetitions.elapsed_time FROM athletes JOIN repetitions ON athletes.id = repetitions.athlete_id
+;
+name        target_time  elapsed_time
+----------  -----------  ------------
+Theron      18.0         17.56
+Jennifer    20.0         19.13
+Jennifer    20.0         19.75
+Ethan       16.0         15.98
+
+sqlite> SELECT athletes.name, athletes.birth_year, repetitions.elapsed_time FROM athletes LEFT OUTER JOIN repetitions ON repetitions.elapsed_time > 20
+16 - athletes.birth_year;
+name        birth_year  elapsed_time
+----------  ----------  ------------
+Theron      1977
+Jennifer    1971
+Ethan       2002        17.56
+Ethan       2002        19.13
+Ethan       2002        19.75
+Ethan       2002        15.98
