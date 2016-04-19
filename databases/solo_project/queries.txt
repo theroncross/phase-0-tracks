@@ -61,3 +61,13 @@ Jennifer    20.0         19.13
 Jennifer    20.0         19.75
 Ethan       16.0         15.98
 
+sqlite> SELECT athletes.name, athletes.birth_year, repetitions.elapsed_time FROM athletes LEFT OUTER JOIN repetitions ON repetitions.elapsed_time > 20
+16 - athletes.birth_year;
+name        birth_year  elapsed_time
+----------  ----------  ------------
+Theron      1977
+Jennifer    1971
+Ethan       2002        17.56
+Ethan       2002        19.13
+Ethan       2002        19.75
+Ethan       2002        15.98
