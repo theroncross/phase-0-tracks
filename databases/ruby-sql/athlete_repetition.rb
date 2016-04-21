@@ -11,6 +11,7 @@ class AthleteRepetition
   end
 
   # saves the athlete's repetetion to the database
+  # TODO: check formatting of each parameter
   def save
     $db.execute 'INSERT INTO athlete_repetitions (athlete_id, repetition_id, start_time, goal_time, elapsed_time) VALUES (?, ?, ?, ?, ?)', [@athlete_id, @repetition_id, @goal_time, @start_time, @elapsed_time]
   end

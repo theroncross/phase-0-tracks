@@ -1,12 +1,13 @@
 require 'sqlite3'
 
-$db = SQLite3::Database.new('workout_builder.db')
+# TODO: get rid of this global variable >:(
+$db = SQLite3::Database.new('spring2016')
 
 create_athletes_table = <<-SQL
   CREATE TABLE IF NOT EXISTS athletes (
     id        INTEGER PRIMARY KEY,
-    name      VARCHAR(255) NOT NULL,
-    birthdate VARCHAR(255),
+    name      VARCHAR(20) NOT NULL,
+    birthdate VARCHAR(12),
     UNIQUE (name)
   );
 SQL
@@ -15,7 +16,7 @@ create_repetitions_table = <<-SQL
   CREATE TABLE IF NOT EXISTS repetitions (
     id            INTEGER PRIMARY KEY,
     distance      INTEGER,
-    effort        VARCHAR(20),
+    effort        INTEGER,
     work_interval INTEGER,
     rest_interval INTEGER
   );
