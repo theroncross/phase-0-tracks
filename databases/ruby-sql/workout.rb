@@ -40,8 +40,8 @@ end
 # Driver code for testing
 theron = Athlete.new
 theron.save
-speed_endurance_100s = Repetition.new(100, 90, 120, nil)
-speed_endurance_100s.save
+speed_endurance_100 = Repetition.new(100, 90, 120, nil)
+speed_endurance_100.save
 workout = Workout.new
 workout.new_athlete_rep
 workout.print_results
