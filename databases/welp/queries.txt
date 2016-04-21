@@ -1,0 +1,22 @@
+SELECT users.first_name, businesses.name, reviews.stars, reviews.comments
+FROM users
+  JOIN reviews
+    ON users.id = reviews.user_id
+  JOIN businesses
+    ON businesses.id = reviews.business_id
+
+Brad|The Beer Shop|5|Great beer, nice atmosphere to hang our or get something done
+Angelina|Lake Theater|4|Nice local theater with a good selection of new releases
+Bob|The Beer Shop|4|Good selection, but sometimes you just want a Bud
+Angelina|Prairie Bread Kitchen|3|Meh
+
+SELECT users.first_name, businesses.name, reviews.stars, reviews.comments
+FROM users
+  JOIN reviews
+    ON users.id = reviews.user_id
+  JOIN businesses
+    ON businesses.id = reviews.business_id
+  WHERE businesses.name = "The Beer Shop";
+
+Brad|The Beer Shop|5|Great beer, nice atmosphere to hang our or get something done
+Bob|The Beer Shop|4|Good selection, but sometimes you just want a Bud
