@@ -30,6 +30,8 @@ class Workout
     AthleteRepetition.new(athlete_id, repetition_id, goal_time, start_time, elapsed_time).save
   end
 
+
+
   # TODO: format this to include the repetition information
   def print_results
     ath_reps = $db.execute 'SELECT athletes.name, athlete_repetitions.elapsed_time FROM athletes JOIN athlete_repetitions ON athletes.id = athlete_repetitions.athlete_id'
