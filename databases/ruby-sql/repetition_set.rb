@@ -9,7 +9,7 @@ class RepetitionSet
     @notes = notes
   end
 
-  def save
-    $db.execute 'INSERT INTO repetition_sets (repetition_id, set_id, quantity, date, notes) VALUES [?, ?, ?, ?, ?]', @repetition_id, @set_id, @quantity, @date, @notes]
+  def save(db)
+    db.execute 'INSERT INTO repetition_sets (repetition_id, set_id, quantity, date, notes) VALUES (?, ?, ?, ?, ?)',[@repetition_id, @set_id, @quantity, @date, @notes]
   end
 end

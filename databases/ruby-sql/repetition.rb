@@ -11,7 +11,7 @@ class Repetition
   end
 
   # saves the repetition to the database
-  def save
-    $db.execute 'INSERT INTO repetitions (distance, effort, work_interval, rest_interval) VALUES (?, ?, ?, ?)', [@distance, @effort, @work_interval, @rest_interval]
+  def save(db)
+    db.execute 'INSERT INTO repetitions (distance, effort, work_interval, rest_interval) VALUES (?, ?, ?, ?)', [@distance, @effort, @work_interval, @rest_interval]
   end
 end

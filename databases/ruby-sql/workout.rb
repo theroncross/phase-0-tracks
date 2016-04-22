@@ -1,14 +1,16 @@
 require_relative './db'
 require_relative './athlete'
 require_relative './repetition'
+require_relative './set'
 require_relative './athlete_repetition'
+require_relative './repetition_set'
 
 # This should provide the interface for timing athletes
 # The new_rep method will eventually take multiple athletes,
 # each with their own goal times and elapsed times
 # Each athlete rep is saved individually for reporting later
 class Workout
-  def new_athlete_rep
+  def new_athlete_rep(db)
     # TODO: prepopulate with last runners and confirm
     p 'Athlete id:'
     athlete_id = gets.chomp
@@ -27,23 +29,23 @@ class Workout
     # TODO: round these to two digits
     elapsed_time = Time.now.to_f - start_time
     p elapsed_time
-    AthleteRepetition.new(athlete_id, repetition_id, goal_time, start_time, elapsed_time).save
+    AthleteRepetition.new(athlete_id, repetition_id, goal_time, start_time, elapsed_time).save db
   end
 
-
-
   # TODO: format this to include the repetition information
-  def print_results
-    ath_reps = $db.execute 'SELECT athletes.name, athlete_repetitions.elapsed_time FROM athletes JOIN athlete_repetitions ON athletes.id = athlete_repetitions.athlete_id'
+  def print_results(db)
+    ath_reps = db.execute 'SELECT athletes.name, athlete_repetitions.elapsed_time FROM athletes JOIN athlete_repetitions ON athletes.id = athlete_repetitions.athlete_id'
     ath_reps.each { |row| p row }
   end
 end
 
 # Driver code for testing
+include DB
+db = DB.create_database 'spring2016'
 theron = Athlete.new
-theron.save
+theron.save db
 speed_endurance_100s = Repetition.new(100, 90, 120, nil)
-speed_endurance_100s.save
+speed_endurance_100s.save db
 workout = Workout.new
-workout.new_athlete_rep
-workout.print_results
+workout.new_athlete_rep db
+workout.print_results db
