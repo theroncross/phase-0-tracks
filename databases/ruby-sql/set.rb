@@ -1,6 +1,8 @@
 # Sets are generic groups of repetitions
 # Sets have names and training types
 class Set
+  include Mixins
+
   def initialize(name, description, training_type)
     @name = name
     @description = description

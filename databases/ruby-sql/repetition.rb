@@ -10,6 +10,14 @@ class Repetition
     @rest_interval = rest_interval
   end
 
+  def self.choose(db)
+    p 'Enter the number for the repetition you want, or type new.'
+    available = db.execute'SELECT * FROM repetitions'
+    available.each { |row| p row }
+    choice = gets.chomp
+    choice == 'new' ? create : available[choice.to_i - 1]
+  end
+
   # saves the repetition to the database
   def save(db)
     db.execute 'INSERT INTO repetitions (distance, effort, work_interval, rest_interval) VALUES (?, ?, ?, ?)', [@distance, @effort, @work_interval, @rest_interval]

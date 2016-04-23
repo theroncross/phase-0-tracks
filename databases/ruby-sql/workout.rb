@@ -1,3 +1,4 @@
+require_relative './mixins'
 require_relative './db'
 require_relative './athlete'
 require_relative './repetition'
@@ -9,14 +10,8 @@ require_relative './repetition_set'
 # The new_rep method will eventually take multiple athletes,
 # each with their own goal times and elapsed times
 # Each athlete rep is saved individually for reporting later
-class Workout
-  def new_athlete_rep(db)
-    # TODO: prepopulate with last runners and confirm
-    p 'Athlete id:'
-    athlete_id = gets.chomp
-    # TODO: list repetitions in database for selection
-    p 'Repetition id:'
-    repetition_id = gets.chomp
+module Workout
+  def new_athlete_rep(db, athlete_id, repetition_id)
     # TODO: get best times from database and use to calculate based on effort
     p 'Goal time (in seconds):'
     goal_time = gets.chomp
@@ -40,12 +35,9 @@ class Workout
 end
 
 # Driver code for testing
-include DB
+include DB, Workout
 db = DB.create_database 'spring2016'
-theron = Athlete.new
-theron.save db
-speed_endurance_100s = Repetition.new(100, 90, 120, nil)
-speed_endurance_100s.save db
-workout = Workout.new
-workout.new_athlete_rep db
-workout.print_results db
+athlete = Athlete.choose db
+repetition = Repetition.choose db
+Workout.new_athlete_rep db, athlete[0], repetition[0]
+Workout.print_results db
