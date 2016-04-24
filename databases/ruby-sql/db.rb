@@ -23,14 +23,16 @@ module DB
       training_type VARCHAR(30)
     );",
     "CREATE TABLE IF NOT EXISTS athlete_repetitions (
-      id            INTEGER PRIMARY KEY,
-      athlete_id    INTEGER,
-      repetition_id INTEGER,
-      goal_time     INTEGER,
-      start_time    INTEGER,
-      elapsed_time  REAL,
-      FOREIGN KEY (athlete_id)    REFERENCES athletes(id),
-      FOREIGN KEY (repetition_id) REFERENCES repetitions(id)
+      id                INTEGER PRIMARY KEY,
+      athlete_id        INTEGER,
+      repetition_id     INTEGER,
+      repetition_set_id INTEGER,
+      goal_time         INTEGER,
+      start_time        INTEGER,
+      elapsed_time      REAL,
+      FOREIGN KEY (athlete_id)          REFERENCES athletes(id),
+      FOREIGN KEY (repetition_id)       REFERENCES repetitions(id),
+      FOREIGN KEY (repetition_set_id)  REFERENCES repetition_sets(id)
     );",
     "CREATE TABLE IF NOT EXISTS repetition_sets (
       id            INTEGER PRIMARY KEY,
@@ -41,12 +43,6 @@ module DB
       notes         VARCHAR(255),
       FOREIGN KEY (repetition_id) REFERENCES repetitions(id),
       FOREIGN KEY (set_id)        REFERENCES sets(id)
-    );",
-    "CREATE TABLE IF NOT EXISTS athlete_repetition_sets (
-      athlete_id        INTEGER,
-      repetition_set_id INTEGER,
-      FOREIGN KEY (athlete_id)        REFERENCES athletes(id),
-      FOREIGN KEY (repetition_set_id) REFERENCES repetition_sets(id)
     );"
   ]
 
