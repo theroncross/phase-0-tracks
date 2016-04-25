@@ -1,6 +1,6 @@
 require 'sqlite3'
 
-# SQL commands for creating tables
+# SQL commands for creating tables and methods for setting up the db
 module DB
   @table_strings = [
     "CREATE TABLE IF NOT EXISTS athletes (

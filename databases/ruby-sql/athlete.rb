@@ -10,6 +10,7 @@ class Athlete
     @birthdate = gets.chomp
   end
 
+  # Class method for listing and selecting athletes
   def self.choose(db)
     p 'Enter the number for the athlete you want, or type new.'
     available = db.execute'SELECT * FROM athletes'
@@ -18,11 +19,8 @@ class Athlete
     choice == 'new' ? create : available[choice.to_i - 1]
   end
 
-  def self.filtered_list(db, table, column, value)
-    db.execute 'SELECT * FROM (?) WHERE (?) = (?)', [table, column, value]
-  end
-
   # saves the athlete to the database
+  # TODO: create a mixin that takes an args object
   def save(db)
     db.execute 'INSERT INTO athletes (name, birthdate) VALUES ( ?, ?)', [@name, @birthdate]
   end

@@ -1,8 +1,7 @@
-# Sets are generic groups of repetitions
-# Sets have names and training types
+# Sets are generic types of training for athletes (eg sprint warmup)
+# Sets have names and training types, but no specific numbers
+# Specifics values are added in repetition sets
 class Set
-  include Mixins
-
   def initialize(name, description, training_type)
     @name = name
     @description = description

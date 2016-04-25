@@ -11,21 +11,21 @@ require_relative './repetition_set'
 # each with their own goal times and elapsed times
 # Each athlete rep is saved individually for reporting later
 module Workout
+  # TODO: implement multiple athletes timed simultaneously
   def new_athlete_rep(db, athlete_id, repetition_id, repetition_set_id, goal_time)
-    p 'Press ENTER to start the timer'
+    p 'Press "Enter" to START the timer'
     gets.chomp
-    start_time = Time.new.to_f
+    start_time = (Time.new.to_f).round(2)
     # TODO: hit stop for each athlete running and assign times to each
-    p 'Press ENTER again to stop timer'
+    p 'Press "Enter" again to STOP the timer'
     gets.chomp
-    # TODO: round these to two digits
-    elapsed_time = Time.now.to_f - start_time
+    elapsed_time = (Time.new.to_f - start_time).round(2)
     p elapsed_time
-    rep = AthleteRepetition.new(athlete_id, repetition_id, repetition_set_id, goal_time, start_time, elapsed_time).save db
+    AthleteRepetition.new(athlete_id, repetition_id, repetition_set_id, goal_time, start_time, elapsed_time).save db
   end
 
-  # Prints repetition information, filtered by athlete, including date
-  # TODO: fix date formatting
+  # Prints repetition information, filtered by athlete
+  # TODO: fix date formatting, filter by set
   def print_results(db, athlete_name)
     ath_reps = db.execute 'SELECT athletes.name, repetitions.distance, repetitions.effort, athlete_repetitions.elapsed_time, repetition_sets.date FROM athletes JOIN athlete_repetitions ON athletes.id = athlete_repetitions.athlete_id JOIN repetition_sets ON athlete_repetitions.repetition_set_id = repetition_sets.id JOIN repetitions ON repetition_sets.repetition_id = repetitions.id WHERE athletes.name = (?)', [athlete_name]
     ath_reps.each { |row| p "#{row[0]} ran #{row[1]}m at #{row[2]}% effort in #{row[3]}s on #{row[4]}" }
@@ -33,6 +33,7 @@ module Workout
 end
 
 # Driver code for testing
+# For now, everything but athlete_repetitions need to be added manually
 include DB, Workout
 db = DB.create_database 'spring2016'
 athlete = Athlete.choose db
