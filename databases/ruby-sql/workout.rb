@@ -33,14 +33,10 @@ module Workout
 end
 
 # Driver code for testing
-# For now, everything but athlete_repetitions need to be added manually
-include DB, Workout
-db = DB.create_database 'spring2016'
-athlete = Athlete.choose db
-repetition_set = RepetitionSet.choose db
-p 'Goal time (in seconds):'
-goal_time = gets.chomp
-repetition_set[3].times do
-  Workout.new_athlete_rep db, athlete[0], repetition_set[1], repetition_set[0], goal_time
-end
-Workout.print_results db, athlete[1]
+theron = Athlete.new
+theron.save
+speed_endurance_100 = Repetition.new(100, 90, 120, nil)
+speed_endurance_100.save
+workout = Workout.new
+workout.new_athlete_rep
+workout.print_results
