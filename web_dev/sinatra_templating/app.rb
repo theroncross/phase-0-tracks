@@ -17,6 +17,11 @@ get '/students/new' do
   erb :new_student
 end
 
+get '/campuses' do
+  @campuses = db.execute("SELECT DISTINCT campus FROM students")
+  erb :campuses
+end
+
 # create new students via
 # a form
 post '/students' do

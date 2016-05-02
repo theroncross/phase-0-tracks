@@ -1,0 +1,15 @@
+<html>
+<head>
+  <title>Campus List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Look at all of our beautiful campuses!</h1>
+  <p>They're the beautifuliest.</p>
+  <ul>
+    <% @campuses.each do |campus| %>
+      <li><%= campus['campus'] %></li>
+    <% end %>
+  </ul>
+</body>
+</html>
